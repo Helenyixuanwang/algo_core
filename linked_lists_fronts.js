@@ -15,8 +15,8 @@ class SLL {
     }
     addFront(value) {
         let newnode = new Node(value)
-        let  current_head = this.head;
-        newnode.next = current_head;
+        
+        newnode.next = this.head;
         this.head = newnode;
         return this.head
         
@@ -42,6 +42,18 @@ class SLL {
                 return null
             
             }
+
+//Create a new SLL method length() that returns number of nodes in that list.
+      length() {
+          let count = 0;
+          let runner = this.head;
+          while (runner != null) {
+              count += 1;
+              runner = runner.next
+
+          }
+          return count
+      }
 }
 
 node1 = new Node(5)
@@ -51,14 +63,16 @@ node4 = new Node("happy")
 console.log(node1.value)
 
 mylist = new SLL()
+console.log("The length of this SLL is "+mylist.length())
 console.log(mylist.addFront(node2.value))
 mylist.addFront(node3.value)
 mylist.addFront(node4.value)
 console.log(mylist)
+console.log("The length of this SLL is "+mylist.length())
 mylist.removeFront()
 console.log(mylist)
 console.log(mylist.front())
-
+console.log("The length of this SLL is "+mylist.length())
 // Remove Front
 // Write a method to remove the head node and return the new list head node. If the list is empty, return null.
 

@@ -54,6 +54,17 @@ class SLL {
           }
           return count
       }
+//  Create display() that returns a string containing all list values. Build what you wish console.log(myList) did!
+      display() {
+          let runner = this.head;
+          let str = "";// i am not sure if [] equals "", "" is an empty string array, but not a normal array
+          while(runner) {
+              str += runner.value;
+              runner = runner.next
+          }
+          return str
+      }
+
 }
 
 node1 = new Node(5)
@@ -63,16 +74,21 @@ node4 = new Node("happy")
 console.log(node1.value)
 
 mylist = new SLL()
+mylist.display()
 console.log("The length of this SLL is "+mylist.length())
 console.log(mylist.addFront(node2.value))
+console.log(mylist.display())
 mylist.addFront(node3.value)
 mylist.addFront(node4.value)
-console.log(mylist)
+console.log(mylist.display())
+// console.log(mylist)
 console.log("The length of this SLL is "+mylist.length())
 mylist.removeFront()
 console.log(mylist)
+mylist.display()
 console.log(mylist.front())
 console.log("The length of this SLL is "+mylist.length())
+console.log(mylist.display())
 // Remove Front
 // Write a method to remove the head node and return the new list head node. If the list is empty, return null.
 

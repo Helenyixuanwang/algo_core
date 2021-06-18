@@ -18,7 +18,8 @@ class SLL {
         
         newnode.next = this.head;
         this.head = newnode;
-        return this.head
+        // return this.head //for assignment
+        return this //use chaining methods
         
     }
     // Remove Front
@@ -64,31 +65,73 @@ class SLL {
           }
           return str
       }
+//Add a method contains(value) to your SLL class, which is given a value as a parameter.  Return a boolean (true/false); true, if the list possesses a node that contains the provided value.
+     contains(value) {
+         let runner = this.head;
+         if (runner == null)
+         return false
+         while (runner) {
+             if (runner.val = value) 
+             return true
+             runner = runner.next
+         }
+         return false
+     }
+    // Create method max() to return list’s largest val.
+    maxMinAvg() {
+        
+        // SLL is empty
+        if (this.head == null) 
+            return null
+        
+        let runner = this.head;
+        let max_value = this.head.value;
+        let min_value = this.head.value;
+        let sum = 0;
+        while (runner) {
+            sum += runner.value
+            if (max_value < runner.value) {
+            max_value = runner.value;
+            } 
+            if (min_value > runner.value) {
+                min_value = runner.value;
+            }
 
+            runner = runner.next
+        }
+        return `max: ${max_value}, min: ${min_value}, avg: ${sum/this.length()}`
+        
+    }
 }
-
 node1 = new Node(5)
 node2 = new Node(4)
-node3 = new Node("coding")
-node4 = new Node("happy")
-console.log(node1.value)
+
+// node3 = new Node("coding")
+// node4 = new Node("happy")
+// console.log(node1.value)
 
 mylist = new SLL()
 mylist.display()
-console.log("The length of this SLL is "+mylist.length())
-console.log(mylist.addFront(node2.value))
-console.log(mylist.display())
-mylist.addFront(node3.value)
-mylist.addFront(node4.value)
-console.log(mylist.display())
-// console.log(mylist)
-console.log("The length of this SLL is "+mylist.length())
-mylist.removeFront()
+console.log(mylist.maxMinAvg())
+mylist.addFront(115).addFront(5).addFront(13).addFront(-1).addFront(10)
+console.log(mylist.maxMinAvg())
+console.log(mylist.contains(5))
+// console.log("The length of this SLL is "+mylist.length())
+// console.log(mylist.addFront(node2.value))
 console.log(mylist)
-mylist.display()
-console.log(mylist.front())
-console.log("The length of this SLL is "+mylist.length())
-console.log(mylist.display())
+// mylist.addFront(node3.value)
+// mylist.addFront(node4.value)
+console.log(mylist.contains(4))
+
+// console.log(mylist.display())
+// console.log(mylist)
+// console.log("The length of this SLL is "+mylist.length())
+// mylist.removeFront()
+// console.log(mylist)
+// mylist.display()
+// console.log(mylist.front())
+// console.log("The length of this SLL is "+mylist.length())
+// console.log(mylist.display())
 // Remove Front
 // Write a method to remove the head node and return the new list head node. If the list is empty, return null.
 

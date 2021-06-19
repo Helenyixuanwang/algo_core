@@ -96,3 +96,19 @@ function NthLargest(arr, n) {
 }
 arr1 = [4,2,5,1,-1,9]
 console.log(NthLargest(arr1,1))
+
+// Skyline Heights
+// Lovely Burbank has a breathtaking view of the Los Angeles skyline. Let’s say you are given an array with heights of consecutive buildings, starting closest to you and extending away. Array [-1,7,3] would represent three buildings: first is actually out of view below street level, behind it is second at 7 stories high, third is 3 stories high (hidden behind the 7-story). You are situated at street level. Return array containing heights of buildings you can see, in order. Given [-1,1,1,7,3] return [1,7]. Given [0,4] return [4]. As always with challenges, do not use built-in array functions such as unshift().
+function skyline(arr) {
+    newArr=[];
+    for (var i = 0; i < arr.length; i++) {
+        if ((arr[i]>0)&& (arr[i]<arr[i+1]))
+         {
+            newArr.push(arr[i]);
+            newArr.push(arr[i+1]);
+        }
+    }
+    return newArr
+}
+arr1 = [-1,1,1,7,3,8,-8,9,19,-1]
+console.log(skyline(arr1))

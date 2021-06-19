@@ -28,7 +28,8 @@ class SLL {
         if (this.head) {
             this.head = this.head.next
         }
-        return this.head
+        // return this.head //for assignment requirement
+        return this //for chaining use
 
     	
     }
@@ -71,7 +72,7 @@ class SLL {
          if (runner == null)
          return false
          while (runner) {
-             if (runner.val = value) 
+             if (runner.val == value) 
              return true
              runner = runner.next
          }

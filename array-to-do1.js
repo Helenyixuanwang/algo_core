@@ -106,19 +106,7 @@ arr1 = [1,1,2,3,5,5]
 console.log(removeDup(arr1))
 
 //removeNeg is studied in class by instructor Adrian
-function removeNeg(array) {
-    for (var i = 0; i <array.length; i++) {
-        if (array[i] < 0 ) {
-            for (var j = i+1; j < array.length; j++) {
-                array[j-1] = array[j];
-            }
-            array.length--;
-            i--;// do this to avoid skipping consecutive negative numbers
-        }
-    }
-    console.log(array)
-    return array
-}
+
 
 arr = [1,-2,-3,5,8,-9,-10,11,-5,6]
 removeNeg(arr)

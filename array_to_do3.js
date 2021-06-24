@@ -55,7 +55,7 @@ function secondLargest(arr) {
             secondL = arr[i]
         }
     }
-    return secondL
+    return [arr[max],secondL]
 }
 arr1 =  [42,1,4,Math.PI,7];
 console.log(secondLargest(arr1))
@@ -99,16 +99,83 @@ console.log(NthLargest(arr1,1))
 
 // Skyline Heights
 // Lovely Burbank has a breathtaking view of the Los Angeles skyline. Let’s say you are given an array with heights of consecutive buildings, starting closest to you and extending away. Array [-1,7,3] would represent three buildings: first is actually out of view below street level, behind it is second at 7 stories high, third is 3 stories high (hidden behind the 7-story). You are situated at street level. Return array containing heights of buildings you can see, in order. Given [-1,1,1,7,3] return [1,7]. Given [0,4] return [4]. As always with challenges, do not use built-in array functions such as unshift().
-function skyline(arr) {
-    newArr=[];
-    for (var i = 0; i < arr.length; i++) {
-        if ((arr[i]>0)&& (arr[i]<arr[i+1]))
-         {
-            newArr.push(arr[i]);
-            newArr.push(arr[i+1]);
+//copy from Jordan on June 19,2021
+//copy Jordan's secondLast function here to test
+function secondLargest(arr){
+
+    // create two variables, one to keep track of the max in the list, the other to track the second largest value. Set second to a super low number so there's a better chance that we'll find that value. Don't want to set it to an index in the arr because there's a chance we could pick the max value inadvertently 
+    let max = arr[0]
+    let second = -1000
+
+    // check if length is less than 2. There won't be a second largest value if so
+    if (arr.length < 2) {
+        return null
+
+        // if length greater than 2, enter this condition
+    } else {
+
+        // iterate for i over the length of the list
+        for (i=0; i<arr.length; i++){
+
+            // first if checks if arr at i is greater than the value stored in max
+            if(arr[i] > max){
+
+                // if so, update second to what our max was before. If we don't do this, everytime we update max, second would stay the same and the function wouldn't work
+                second = max
+                max = arr[i]
+
+                // if arr[i] isn't greater than or equal to max, we need to check if it's greater than the value stored in second
+            } else if (arr[i] > second && arr[i] != max) {
+
+                // if so, update second to the value at arr[i]
+                second = arr[i]
+            }
+        }
+        
+        // I'm returning max to use in the skyscraper function, but the answer to this problem is to just return second
+        return [max,second]
+    }
+}
+
+function skylineHeights(arr){
+    // create a few variables, a counter variable to update the values in our newly created empty list. The counter variable is our workaround for not being able to use .push()
+    // our next variable is current largest. When we iterate through the list, this will check if the values following the current largest in the list are greater. If so, that means you can see the building, so we will have to add it to the newArr
+    // the last variable is going to be the max of the list. We'll use the secondLargest function from before. I returned [max, second] in that function, so I access the max by grabbing the 0th index of that function called with arr
+
+
+    let count = 0
+    let newArr = []
+    let currentLargest = arr[0]
+    let max = secondLargest(arr)[0]
+
+    // iterate over arr
+    for(i=0; i<arr.length; i++){
+        
+        // if arr[i] is equal to or less than 0, we wouldn't be able to see the building at all, so we use continue to go to the next value in the arr
+        if (arr[i] <= 0) {
+            continue
+
+            // if not, move to the else
+        } else {
+
+            // first if, check to see if the arr[i] == max. If so, we'll add arr[i] to the list by setting the value of newArr at our count variable equal to arr[i]. Then we return newArr because no buildings following our max will be tall enough to be visible
+            if (arr[i] == max){
+                newArr[count] = arr[i]
+                return newArr
+
+            // else if the value at arr[i] is greater than our current largest in the list, we will add that value to the list using the newArr[count] from above. We then set currentLargest to the value at arr[i] and increment our count variable
+            } else if (arr[i] > currentLargest) {
+                newArr[count] = arr[i]
+                currentLargest = arr[i]
+                count++
+            }
         }
     }
+
+    // after we get through iterating, I don't think we'd reach this return because we'd eventually hit the max, but just in case, return newArr with the solution
     return newArr
 }
-arr1 = [-1,1,1,7,3,8,-8,9,19,-1]
-console.log(skyline(arr1))
+
+console.log(skylineHeights([-1,1,1,7,3]))
+console.log(skylineHeights([-1,1,1,7,3,9,12,2,25]))
+console.log(skylineHeights([-1,1,1,7,3,6,7,5,4,3,3,4,9]))

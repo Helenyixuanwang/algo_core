@@ -12,3 +12,13 @@ category_choices = [
 for (var i = 0; i < category_choices.length; i++) {
     console.log(category_choices[i])
 }
+
+function actuallyPrintingNames() {
+    for (let index = 0; index < names.length; index++) {
+      let name = names[index];
+      console.log(name + ' was found at index ' + index);
+    }
+    console.log('name and index after loop is ' + name + ':' + index);
+  }                
+  
+                     
